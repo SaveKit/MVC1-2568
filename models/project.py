@@ -39,20 +39,6 @@ class Project:
         return projects
 
     @staticmethod
-    def find_all():
-        """
-        ฟังก์ชันสำหรับดึงข้อมูล "โครงการทั้งหมด"
-        - @staticmethod หมายความว่าเราสามารถเรียกใช้ฟังก์ชันนี้ได้เลยโดยไม่ต้องสร้าง object
-          (เช่น เรียกใช้ Project.find_all() ได้เลย)
-        - ขั้นตอนการทำงาน:
-          1. เรียก load_data() เพื่อเอาข้อมูลทั้งหมดจาก data.json มา
-          2. จากข้อมูลทั้งหมดนั้น เราสนใจแค่ส่วนที่เป็น 'projects'
-          3. คืนค่า list ของโครงการทั้งหมดกลับไป
-        """
-        all_data = load_data()
-        return all_data["projects"]
-
-    @staticmethod
     def find_by_id(project_id):
         """
         ฟังก์ชันสำหรับค้นหาโครงการเดียวจาก ID ที่ระบุ
@@ -63,3 +49,13 @@ class Project:
             if project["project_id"] == project_id:
                 return project
         return None  # คืนค่า None ถ้าวนลูปจนจบแล้วยังไม่เจอโครงการที่ต้องการ
+
+    @staticmethod
+    def get_all_categories():
+        """
+        ฟังก์ชันสำหรับดึงรายชื่อหมวดหมู่ (Category) ทั้งหมดที่ไม่ซ้ำกัน
+        """
+        all_data = load_data()
+        # ใช้ set เพื่อหาค่าที่ไม่ซ้ำกัน แล้วแปลงกลับเป็น list และเรียงลำดับ
+        categories = sorted(list(set(p["category"] for p in all_data["projects"])))
+        return categories

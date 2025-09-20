@@ -11,6 +11,8 @@
                 <li><strong><a href="{{ url_for('index') }}">CS Camp Crowdfunding</a></strong></li>
             </ul>
             <ul>
+                <li><a href="{{ url_for('statistics') }}">สถิติ</a></li>
+
                 {% if session['username'] %}
                     <li>ยินดีต้อนรับ, {{ session['username'] }}</li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>

@@ -22,14 +22,20 @@ app.config["DEBUG"] = os.getenv("FLASK_DEBUG", "False").lower() in ["true", "1"]
 def index():
     """
     ฟังก์ชันสำหรับจัดการหน้าแรก
-    - ขั้นตอนการทำงาน:
-      1. สั่งให้ Model (Project.find_all()) ไปดึงข้อมูลโครงการทั้งหมดมา
-      2. เมื่อได้ข้อมูลมาแล้ว (เก็บในตัวแปร all_projects)
-      3. สั่งให้ View (render_template) ไปแสดงผลที่ไฟล์ 'projects_list.html'
-         พร้อมกับส่งข้อมูล all_projects ไปให้ View ใช้ (โดยตั้งชื่อตัวแปรใน View ว่า 'projects')
+    - รับค่า query parameters จาก URL มาเพื่อใช้ในการค้นหา, กรอง, เรียงลำดับ
     """
-    all_projects = Project.find_all()
-    return render_template("projects_list.html", projects=all_projects)
+    search = request.args.get("search")
+    category = request.args.get("category")
+    sort = request.args.get("sort")
+
+    all_projects = Project.find_all(search_term=search, category=category, sort_by=sort)
+
+    # (Optional) สร้าง list ของ category สำหรับ dropdown
+    categories = Project.get_all_categories()
+
+    return render_template(
+        "projects_list.html", projects=all_projects, categories=categories
+    )
 
 
 # --- Route สำหรับดูรายละเอียดโครงการ ---
@@ -100,6 +106,21 @@ def logout():
     session.clear()  # ล้างข้อมูล session ทั้งหมด
     flash("ออกจากระบบเรียบร้อยแล้ว")
     return redirect(url_for("index"))
+
+
+# --- Route สำหรับแสดงสถิติ ---
+@app.route("/statistics")
+def statistics():
+    """
+    ฟังก์ชันสำหรับแสดงหน้าสถิติ
+    - สั่งให้ Pledge Model ไปนับจำนวนการสนับสนุนแต่ละประเภท
+    - ส่งค่าที่นับได้ไปให้ View แสดงผล
+    """
+    successful = Pledge.count_successful()
+    rejected = Pledge.count_rejected()
+    return render_template(
+        "statistics.html", successful_pledges=successful, rejected_pledges=rejected
+    )
 
 
 if __name__ == "__main__":
