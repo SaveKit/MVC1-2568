@@ -4,13 +4,14 @@
 
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, session, request, redirect, url_for, flash
 from models.project import Project
 from models.reward import Reward
+from models.user import User
 
 # สร้าง instance ของแอปพลิเคชัน Flask
+load_dotenv()
 app = Flask(__name__, template_folder="views")
-
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["DEBUG"] = os.getenv("FLASK_DEBUG", "False").lower() in ["true", "1"]
 
@@ -30,6 +31,7 @@ def index():
     return render_template("projects_list.html", projects=all_projects)
 
 
+# --- Route สำหรับดูรายละเอียดโครงการ ---
 @app.route("/project/<project_id>")
 def project_detail(project_id):
     """
@@ -41,6 +43,37 @@ def project_detail(project_id):
     project = Project.find_by_id(project_id)
     rewards = Reward.find_by_project(project_id)
     return render_template("project_detail.html", project=project, rewards=rewards)
+
+
+# --- Route สำหรับ Login ---
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # ถ้าเป็นการส่งฟอร์มเข้ามา
+        username = request.form["username"]
+        user = User.find_by_username(username)
+
+        if user:
+            # ถ้าหา user เจอ
+            session["user_id"] = user["user_id"]
+            session["username"] = user["username"]
+            flash(f'เข้าสู่ระบบสำเร็จในชื่อ {user["username"]}')  # ส่งข้อความ flash
+            return redirect(url_for("index"))  # พาผู้ใช้กลับไปหน้าแรก
+        else:
+            # ถ้าหา user ไม่เจอ
+            flash("Username ไม่ถูกต้อง")
+            return redirect(url_for("login"))  # กลับไปหน้า login เหมือนเดิม
+
+    # ถ้าเป็นการเปิดหน้าเว็บปกติ (GET) ให้แสดงฟอร์ม login
+    return render_template("login.html")
+
+
+# --- Route สำหรับ Logout ---
+@app.route("/logout")
+def logout():
+    session.clear()  # ล้างข้อมูล session ทั้งหมด
+    flash("ออกจากระบบเรียบร้อยแล้ว")
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
