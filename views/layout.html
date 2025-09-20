@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crowdfunding CS Camp</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
@@ -10,13 +8,30 @@
     <main class="container">
         <nav>
             <ul>
-                <li><strong>CS Camp Crowdfunding</strong></li>
+                <li><strong><a href="{{ url_for('index') }}">CS Camp Crowdfunding</a></strong></li>
+            </ul>
+            <ul>
+                {% if session['username'] %}
+                    <li>ยินดีต้อนรับ, {{ session['username'] }}</li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="container" style="background-color: var(--primary-focus); color: white; padding: 1rem; margin-bottom: 1rem; border-radius: var(--border-radius);">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
         {% block content %}
         {% endblock %}
-
     </main>
 </body>
 </html>
