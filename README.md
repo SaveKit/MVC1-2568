@@ -1,6 +1,6 @@
-# CS Camp Crowdfunding Project
+# CS Crowdfunding Project
 
-โปรเจกต์นี้เป็นระบบระดมทุนสำหรับโครงการใน CS Camp ซึ่งเป็นส่วนหนึ่งของการสอบ Exit Exam
+โปรเจกต์นี้เป็นระบบระดมทุนสำหรับโครงการ ซึ่งเป็นส่วนหนึ่งของการสอบ Exit Exam
 
 ## วิธีการติดตั้งและรันโปรเจกต์ (Setup Instructions)
 
@@ -8,7 +8,7 @@
 
     ```bash
     git clone [your-github-repo-link]
-    cd crowdfunding-app
+    cd MVC1-2568
     ```
 
 2.  **สร้างและเปิดใช้งาน Virtual Environment (แนะนำ):**
