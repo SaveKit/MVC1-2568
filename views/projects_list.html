@@ -3,6 +3,32 @@
 {% block content %}
     <h1 style="text-align: center;">โครงการทั้งหมด</h1>
 
+    <form method="GET" action="{{ url_for('index') }}">
+        <div class="grid">
+            <input type="search" name="search" placeholder="ค้นหาชื่อโครงการ..." value="{{ request.args.get('search', '') }}">
+            
+            <select name="category">
+                <option value="">ทุกหมวดหมู่</option>
+                {% for cat in categories %}
+                    <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">ค้นหา/กรอง</button>
+        </div>
+    </form>
+
+    <div style="margin-bottom: 1rem; text-align: center;">
+        <strong>เรียงตาม:</strong>
+        <a href="{{ url_for('index', sort='newest') }}" role="button" class="contrast">ใหม่สุด</a>
+        <a href="{{ url_for('index', sort='ending_soon') }}" role="button" class="contrast">ใกล้หมดเวลา</a>
+        <a href="{{ url_for('index', sort='most_funded') }}" role="button" class="contrast">ระดมทุนได้มากสุด</a>
+    </div>
+
+    {% if not projects %}
+        <p style="text-align: center;">ไม่พบโครงการที่ตรงกับเงื่อนไข</p>
+    {% endif %}
+
     {% for project in projects %}
     <article>
         <header>

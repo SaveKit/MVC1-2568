@@ -3,12 +3,40 @@
 # จะมีการเรียกใช้ฟังก์ชันจาก database.py เพื่อดึงข้อมูลมาทำงานต่อ
 
 from .database import load_data
+from datetime import datetime
 
 
 class Project:
     """
     คลาส Project นี้จะรวบรวมฟังก์ชันการทำงานทั้งหมดที่เกี่ยวกับโครงการ
     """
+
+    @staticmethod
+    def find_all(search_term=None, category=None, sort_by=None):
+        """
+        ฟังก์ชันสำหรับดึงข้อมูลโครงการทั้งหมด พร้อมรองรับการค้นหา, กรอง และเรียงลำดับ
+        """
+        all_data = load_data()
+        projects = all_data["projects"]
+
+        # 1. Filtering by Category
+        if category:
+            projects = [p for p in projects if p["category"] == category]
+
+        # 2. Searching by Name
+        if search_term:
+            projects = [p for p in projects if search_term.lower() in p["name"].lower()]
+
+        # 3. Sorting
+        if sort_by == "newest":
+            # (โจทย์ไม่ได้กำหนดวันที่สร้าง เราจึงจำลองโดยเรียงจาก ID ซึ่งเพิ่มเข้ามาทีหลัง)
+            projects.sort(key=lambda p: p["project_id"], reverse=True)
+        elif sort_by == "ending_soon":
+            projects.sort(key=lambda p: datetime.strptime(p["deadline"], "%Y-%m-%d"))
+        elif sort_by == "most_funded":
+            projects.sort(key=lambda p: p["current_amount"], reverse=True)
+
+        return projects
 
     @staticmethod
     def find_all():
