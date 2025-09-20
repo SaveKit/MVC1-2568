@@ -76,3 +76,27 @@ class Pledge:
         }
         all_data["pledges"].append(new_pledge)
         save_data(all_data)
+
+    @staticmethod
+    def count_successful():
+        """
+        ฟังก์ชันสำหรับนับจำนวนการสนับสนุนที่สำเร็จทั้งหมด
+        """
+        all_data = load_data()
+        count = 0
+        for pledge in all_data["pledges"]:
+            if pledge["status"] == "successful":
+                count += 1
+        return count
+
+    @staticmethod
+    def count_rejected():
+        """
+        ฟังก์ชันสำหรับนับจำนวนการสนับสนุนที่ถูกปฏิเสธทั้งหมด
+        """
+        all_data = load_data()
+        count = 0
+        for pledge in all_data["pledges"]:
+            if pledge["status"] == "rejected":
+                count += 1
+        return count

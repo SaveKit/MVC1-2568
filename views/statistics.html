@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align: center;">สถิติของระบบ</h1>
+
+    <div class="grid">
+        <article style="text-align: center;">
+            <header><strong>การสนับสนุนที่สำเร็จ</strong></header>
+            <h2>{{ successful_pledges }}</h2>
+            <p>ครั้ง</p>
+        </article>
+        <article style="text-align: center;">
+            <header><strong>การสนับสนุนที่ถูกปฏิเสธ</strong></header>
+            <h2>{{ rejected_pledges }}</h2>
+            <p>ครั้ง</p>
+        </article>
+    </div>
+{% endblock %}
