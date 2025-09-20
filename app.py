@@ -8,6 +8,7 @@ from flask import Flask, render_template, session, request, redirect, url_for, f
 from models.project import Project
 from models.reward import Reward
 from models.user import User
+from models.pledge import Pledge
 
 # สร้าง instance ของแอปพลิเคชัน Flask
 load_dotenv()
@@ -32,14 +33,39 @@ def index():
 
 
 # --- Route สำหรับดูรายละเอียดโครงการ ---
-@app.route("/project/<project_id>")
+@app.route("/project/<project_id>", methods=["GET", "POST"])
 def project_detail(project_id):
     """
-    ฟังก์ชันสำหรับแสดงหน้ารายละเอียดของโครงการ
+    ฟังก์ชันสำหรับแสดงหน้ารายละเอียดของโครงการ และรับข้อมูลการสนับสนุน
     - รับ project_id ที่ผู้ใช้ร้องขอมาจาก URL
     - สั่งให้ Model ไปหาข้อมูลโครงการ (find_by_id) และข้อมูลรางวัล (find_by_project)
     - ส่งข้อมูลทั้งสองอย่างไปให้ View 'project_detail.html' แสดงผล
     """
+    if request.method == "POST":
+        # ตรวจสอบว่าผู้ใช้ล็อกอินหรือยัง
+        if "user_id" not in session:
+            flash("กรุณาล็อกอินก่อนทำการสนับสนุน")
+            return redirect(url_for("login"))
+
+        # ดึงข้อมูลจากฟอร์มที่ส่งมา
+        user_id = session["user_id"]
+        reward_id = request.form.get("reward_id")
+        # แปลง reward_id เป็น integer ถ้ามีค่า, ถ้าไม่มี (เลือก "ไม่รับรางวัล") ให้เป็น None
+        reward_id = int(reward_id) if reward_id else None
+
+        try:
+            amount = int(request.form.get("amount"))
+        except (ValueError, TypeError):
+            flash("กรุณากรอกจำนวนเงินเป็นตัวเลข")
+            return redirect(url_for("project_detail", project_id=project_id))
+
+        # สั่งให้ Pledge Model ทำการสร้างและตรวจสอบการสนับสนุน
+        success, message = Pledge.create(user_id, project_id, amount, reward_id)
+        flash(message)  # แสดงผลลัพธ์ให้ผู้ใช้ทราบ
+
+        # redirect กลับมาที่หน้าเดิมเพื่อแสดงข้อมูลที่อัปเดตแล้ว
+        return redirect(url_for("project_detail", project_id=project_id))
+
     project = Project.find_by_id(project_id)
     rewards = Reward.find_by_project(project_id)
     return render_template("project_detail.html", project=project, rewards=rewards)
