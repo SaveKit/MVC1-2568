@@ -1,22 +1,52 @@
 {
   "users": [
-    { "user_id": 1, "username": "alice" },
-    { "user_id": 2, "username": "bob" },
-    { "user_id": 3, "username": "charlie" },
-    { "user_id": 4, "username": "diana" },
-    { "user_id": 5, "username": "evan" },
-    { "user_id": 6, "username": "fiona" },
-    { "user_id": 7, "username": "george" },
-    { "user_id": 8, "username": "hannah" },
-    { "user_id": 9, "username": "ian" },
-    { "user_id": 10, "username": "judy" }
+    {
+      "user_id": 1,
+      "username": "alice"
+    },
+    {
+      "user_id": 2,
+      "username": "bob"
+    },
+    {
+      "user_id": 3,
+      "username": "charlie"
+    },
+    {
+      "user_id": 4,
+      "username": "diana"
+    },
+    {
+      "user_id": 5,
+      "username": "evan"
+    },
+    {
+      "user_id": 6,
+      "username": "fiona"
+    },
+    {
+      "user_id": 7,
+      "username": "george"
+    },
+    {
+      "user_id": 8,
+      "username": "hannah"
+    },
+    {
+      "user_id": 9,
+      "username": "ian"
+    },
+    {
+      "user_id": 10,
+      "username": "judy"
+    }
   ],
   "projects": [
     {
       "project_id": "11223344",
       "name": "เครื่องแยกขยะ AI อัจฉริยะ",
       "goal_amount": 80000,
-      "current_amount": 25500,
+      "current_amount": 26500,
       "deadline": "2025-12-31",
       "category": "Technology"
     },
@@ -25,7 +55,7 @@
       "name": "บอร์ดเกมปลูกป่าไม้",
       "goal_amount": 50000,
       "current_amount": 50000,
-      "deadline": "2025-10-31",
+      "deadline": "2025-09-19",
       "category": "Games"
     },
     {
@@ -33,7 +63,7 @@
       "name": "โดรนโปรยเมล็ดพืช",
       "goal_amount": 150000,
       "current_amount": 95000,
-      "deadline": "2025-11-30",
+      "deadline": "2025-08-30",
       "category": "Technology"
     },
     {
@@ -78,16 +108,130 @@
     }
   ],
   "reward_tiers": [
-    { "reward_id": 101, "project_id": "11223344", "name": "สติกเกอร์ AI", "min_amount": 100, "quantity_left": 100 },
-    { "reward_id": 102, "project_id": "11223344", "name": "เสื้อยืดโครงการ", "min_amount": 500, "quantity_left": 50 },
-    { "reward_id": 201, "project_id": "22334455", "name": "รับบอร์ดเกม 1 กล่อง", "min_amount": 800, "quantity_left": 60 },
-    { "reward_id": 202, "project_id": "22334455", "name": "รับบอร์ดเกม (กล่องพิเศษ)", "min_amount": 1200, "quantity_left": 20 },
-    { "reward_id": 401, "project_id": "44556677", "name": "E-Book", "min_amount": 150, "quantity_left": 200 },
-    { "reward_id": 402, "project_id": "44556677", "name": "หนังสือปกแข็ง", "min_amount": 450, "quantity_left": 100 }
+    {
+      "reward_id": 101,
+      "project_id": "11223344",
+      "name": "สติกเกอร์ AI",
+      "min_amount": 100,
+      "quantity_left": 100
+    },
+    {
+      "reward_id": 102,
+      "project_id": "11223344",
+      "name": "เสื้อยืดโครงการ",
+      "min_amount": 500,
+      "quantity_left": 49
+    },
+    {
+      "reward_id": 201,
+      "project_id": "22334455",
+      "name": "รับบอร์ดเกม 1 กล่อง",
+      "min_amount": 800,
+      "quantity_left": 60
+    },
+    {
+      "reward_id": 202,
+      "project_id": "22334455",
+      "name": "รับบอร์ดเกม (กล่องพิเศษ)",
+      "min_amount": 1200,
+      "quantity_left": 20
+    },
+    {
+      "reward_id": 401,
+      "project_id": "44556677",
+      "name": "E-Book",
+      "min_amount": 150,
+      "quantity_left": 200
+    },
+    {
+      "reward_id": 402,
+      "project_id": "44556677",
+      "name": "หนังสือปกแข็ง",
+      "min_amount": 450,
+      "quantity_left": 100
+    }
   ],
   "pledges": [
-     { "pledge_id": 1, "user_id": 1, "project_id": "11223344", "amount": 500, "reward_id": 102, "status": "successful", "timestamp": "2025-09-20T10:00:00Z" },
-     { "pledge_id": 2, "user_id": 2, "project_id": "22334455", "amount": 50, "reward_id": null, "status": "rejected", "timestamp": "2025-09-20T11:00:00Z" },
-     { "pledge_id": 3, "user_id": 3, "project_id": "22334455", "amount": 800, "reward_id": 201, "status": "successful", "timestamp": "2025-09-21T14:00:00Z" }
+    {
+      "pledge_id": 1,
+      "user_id": 1,
+      "project_id": "11223344",
+      "amount": 500,
+      "reward_id": 102,
+      "status": "successful",
+      "timestamp": "2025-09-20T10:00:00Z"
+    },
+    {
+      "pledge_id": 2,
+      "user_id": 2,
+      "project_id": "22334455",
+      "amount": 50,
+      "reward_id": null,
+      "status": "rejected",
+      "timestamp": "2025-09-20T11:00:00Z"
+    },
+    {
+      "pledge_id": 3,
+      "user_id": 3,
+      "project_id": "22334455",
+      "amount": 800,
+      "reward_id": 201,
+      "status": "successful",
+      "timestamp": "2025-09-21T14:00:00Z"
+    },
+    {
+      "pledge_id": "b4046085-d25b-4129-a9ff-37474bef7c50",
+      "user_id": 1,
+      "project_id": "11223344",
+      "amount": 500,
+      "reward_id": null,
+      "status": "successful",
+      "timestamp": "2025-09-20T12:44:32.570172"
+    },
+    {
+      "pledge_id": "b25128d3-6995-410a-96e4-e7109b1fc247",
+      "user_id": 1,
+      "project_id": "11223344",
+      "amount": 50,
+      "reward_id": 101,
+      "status": "rejected",
+      "timestamp": "2025-09-20T12:44:39.719623"
+    },
+    {
+      "pledge_id": "1074e203-8dfa-49f1-9b53-4319305078af",
+      "user_id": 1,
+      "project_id": "11223344",
+      "amount": 50,
+      "reward_id": 102,
+      "status": "rejected",
+      "timestamp": "2025-09-20T12:44:49.814750"
+    },
+    {
+      "pledge_id": "7569bd75-2ef1-4dfc-bcd6-5b1ade641086",
+      "user_id": 1,
+      "project_id": "11223344",
+      "amount": 500,
+      "reward_id": 102,
+      "status": "successful",
+      "timestamp": "2025-09-20T12:44:54.502068"
+    },
+    {
+      "pledge_id": "729d8bbe-71a1-4862-9184-c954ef6e8aa7",
+      "user_id": 1,
+      "project_id": "33445566",
+      "amount": 1000,
+      "reward_id": null,
+      "status": "rejected",
+      "timestamp": "2025-09-20T12:52:20.055438"
+    },
+    {
+      "pledge_id": "23cfc2b2-5458-4eb2-8188-ee026183f649",
+      "user_id": 1,
+      "project_id": "33445566",
+      "amount": 10000,
+      "reward_id": null,
+      "status": "rejected",
+      "timestamp": "2025-09-20T12:52:34.351781"
+    }
   ]
 }
