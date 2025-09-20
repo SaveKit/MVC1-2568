@@ -6,7 +6,11 @@
     {% for project in projects %}
     <article>
         <header>
-            <strong>{{ project.name }}</strong>
+            <strong>
+                <a href="{{ url_for('project_detail', project_id=project.project_id) }}">
+                    {{ project.name }}
+                </a>
+            </strong>
         </header>
         <p><strong>หมวดหมู่:</strong> {{ project.category }}</p>
         <p>
@@ -18,5 +22,4 @@
         </footer>
     </article>
     {% endfor %}
-
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if project %}
+        <article>
+            <header>
+                <h2>{{ project.name }}</h2>
+            </header>
+            <p><strong>หมวดหมู่:</strong> {{ project.category }}</p>
+            <p><strong>สิ้นสุดวันที่:</strong> {{ project.deadline }}</p>
+
+            {% set progress = (project.current_amount / project.goal_amount) * 100 %}
+            <progress value="{{ project.current_amount }}" max="{{ project.goal_amount }}"></progress>
+            <p>
+                <strong>ระดมทุนได้แล้ว:</strong> {{ "{:,.0f}".format(project.current_amount) }} บาท 
+                ({{ "{:,.1f}".format(progress) }}%)
+            </p>
+            <p><strong>เป้าหมาย:</strong> {{ "{:,.0f}".format(project.goal_amount) }} บาท</p>
+        </article>
+
+        <h3>รางวัลสนับสนุน (Rewards)</h3>
+        {% for reward in rewards %}
+            <article>
+                <header><strong>{{ reward.name }}</strong></header>
+                <p>สนับสนุนขั้นต่ำ: {{ "{:,.0f}".format(reward.min_amount) }} บาท</p>
+                <footer><small>เหลือ {{ reward.quantity_left }} สิทธิ์</small></footer>
+            </article>
+        {% else %}
+            <p>โครงการนี้ยังไม่มีรางวัลให้สนับสนุน</p>
+        {% endfor %}
+
+    {% else %}
+        <h1>ไม่พบโครงการที่คุณค้นหา</h1>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" role="button" class="secondary">กลับไปหน้าแรก</a>
+{% endblock %}
