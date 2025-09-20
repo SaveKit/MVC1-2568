@@ -1,0 +1,93 @@
+{
+  "users": [
+    { "user_id": 1, "username": "alice" },
+    { "user_id": 2, "username": "bob" },
+    { "user_id": 3, "username": "charlie" },
+    { "user_id": 4, "username": "diana" },
+    { "user_id": 5, "username": "evan" },
+    { "user_id": 6, "username": "fiona" },
+    { "user_id": 7, "username": "george" },
+    { "user_id": 8, "username": "hannah" },
+    { "user_id": 9, "username": "ian" },
+    { "user_id": 10, "username": "judy" }
+  ],
+  "projects": [
+    {
+      "project_id": "11223344",
+      "name": "เครื่องแยกขยะ AI อัจฉริยะ",
+      "goal_amount": 80000,
+      "current_amount": 25500,
+      "deadline": "2025-12-31",
+      "category": "Technology"
+    },
+    {
+      "project_id": "22334455",
+      "name": "บอร์ดเกมปลูกป่าไม้",
+      "goal_amount": 50000,
+      "current_amount": 50000,
+      "deadline": "2025-10-31",
+      "category": "Games"
+    },
+    {
+      "project_id": "33445566",
+      "name": "โดรนโปรยเมล็ดพืช",
+      "goal_amount": 150000,
+      "current_amount": 95000,
+      "deadline": "2025-11-30",
+      "category": "Technology"
+    },
+    {
+      "project_id": "44556677",
+      "name": "หนังสือภาพนิทานวิทยาศาสตร์สำหรับเด็ก",
+      "goal_amount": 30000,
+      "current_amount": 12000,
+      "deadline": "2025-11-15",
+      "category": "Education"
+    },
+    {
+      "project_id": "55667788",
+      "name": "แอปพลิเคชันช่วยเหลือผู้ป่วยติดเตียง",
+      "goal_amount": 100000,
+      "current_amount": 65000,
+      "deadline": "2026-01-15",
+      "category": "Health"
+    },
+    {
+      "project_id": "66778899",
+      "name": "ชุด Kit สอนเขียนโค้ดสำหรับเด็ก",
+      "goal_amount": 45000,
+      "current_amount": 48000,
+      "deadline": "2025-10-25",
+      "category": "Education"
+    },
+    {
+      "project_id": "77889900",
+      "name": "เกมมือถือแนว Puzzle แก้ปัญหาโลกร้อน",
+      "goal_amount": 60000,
+      "current_amount": 15000,
+      "deadline": "2025-12-20",
+      "category": "Games"
+    },
+    {
+      "project_id": "88990011",
+      "name": "สารคดีสั้นชีวิตสัตว์ป่าในไทย",
+      "goal_amount": 75000,
+      "current_amount": 30000,
+      "deadline": "2026-02-01",
+      "category": "Art"
+    }
+  ],
+  "reward_tiers": [
+    { "reward_id": 101, "project_id": "11223344", "name": "สติกเกอร์ AI", "min_amount": 100, "quantity_left": 100 },
+    { "reward_id": 102, "project_id": "11223344", "name": "เสื้อยืดโครงการ", "min_amount": 500, "quantity_left": 50 },
+    { "reward_id": 201, "project_id": "22334455", "name": "รับบอร์ดเกม 1 กล่อง", "min_amount": 800, "quantity_left": 60 },
+    { "reward_id": 202, "project_id": "22334455", "name": "รับบอร์ดเกม (กล่องพิเศษ)", "min_amount": 1200, "quantity_left": 20 },
+    { "reward_id": 401, "project_id": "44556677", "name": "E-Book", "min_amount": 150, "quantity_left": 200 },
+    { "reward_id": 402, "project_id": "44556677", "name": "หนังสือปกแข็ง", "min_amount": 450, "quantity_left": 100 }
+  ],
+  "pledges": [
+     { "pledge_id": 1, "user_id": 1, "project_id": "11223344", "amount": 500, "reward_id": 102, "status": "successful", "timestamp": "2025-09-20T10:00:00Z" },
+     { "pledge_id": 2, "user_id": 2, "project_id": "22334455", "amount": 50, "reward_id": null, "status": "rejected", "timestamp": "2025-09-20T11:00:00Z" },
+     { "pledge_id": 3, "user_id": 3, "project_id": "22334455", "amount": 800, "reward_id": 201, "status": "successful", "timestamp": "2025-09-21T14:00:00Z" }
+  ]
+}
