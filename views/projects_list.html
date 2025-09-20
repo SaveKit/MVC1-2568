@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align: center;">โครงการทั้งหมด</h1>
+
+    {% for project in projects %}
+    <article>
+        <header>
+            <strong>{{ project.name }}</strong>
+        </header>
+        <p><strong>หมวดหมู่:</strong> {{ project.category }}</p>
+        <p>
+            <strong>เป้าหมาย:</strong> {{ "{:,.0f}".format(project.goal_amount) }} บาท <br>
+            <strong>ระดมทุนได้แล้ว:</strong> {{ "{:,.0f}".format(project.current_amount) }} บาท
+        </p>
+        <footer>
+            <small><strong>สิ้นสุดวันที่:</strong> {{ project.deadline }}</small>
+        </footer>
+    </article>
+    {% endfor %}
+
+{% endblock %}
